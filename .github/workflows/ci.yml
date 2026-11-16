@@ -1,18 +1,12 @@
 name: ci
 on:
   pull_request:
-  push:
-    branches: [main, stable, 'release/**']
 jobs:
-  smoke:
-    name: Appium Smoke Tests
+  bundle:
+    name: JS bundle size
     runs-on: ubuntu-latest
     steps:
-      - name: Fail the first attempt
+      - name: Fail the bundle budget
         run: |
-          echo "attempt ${{ github.run_attempt }}"
-          if [ "${{ github.run_attempt }}" -eq 1 ]; then
-            echo "ETIMEDOUT talking to the runner"
-            exit 1
-          fi
-          echo "ok"
+          echo "JS bundle exceeds baseline"
+          exit 1
