@@ -11,5 +11,9 @@ jobs:
       - name: Fail the first attempt
         run: |
           echo "attempt ${{ github.run_attempt }}"
-          echo "ETIMEDOUT talking to the runner"
-          exit 1
+          if [ "${{ github.run_attempt }}" -eq 1 ]; then
+            echo "ETIMEDOUT talking to the runner"
+            sleep 45
+            exit 1
+          fi
+          echo "ok"
