@@ -8,8 +8,5 @@ jobs:
     name: Appium Smoke Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Slow failure for stale-head test
-        run: |
-          sleep 240
-          echo "ETIMEDOUT talking to the runner"
-          exit 1
+      - name: Pass after head moved
+        run: echo "ok"
