@@ -8,5 +8,11 @@ jobs:
     name: Appium Smoke Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Pass after head moved
-        run: echo "ok"
+      - name: Fail the first attempt
+        run: |
+          echo "attempt ${{ github.run_attempt }}"
+          if [ "${{ github.run_attempt }}" -eq 1 ]; then
+            echo "ETIMEDOUT talking to the runner"
+            exit 1
+          fi
+          echo "ok"
