@@ -8,11 +8,8 @@ jobs:
     name: Appium Smoke Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Fail the first attempt
+      - name: Slow failure for stale-head test
         run: |
-          echo "attempt ${{ github.run_attempt }}"
-          if [ "${{ github.run_attempt }}" -eq 1 ]; then
-            echo "ETIMEDOUT talking to the runner"
-            exit 1
-          fi
-          echo "ok"
+          sleep 240
+          echo "ETIMEDOUT talking to the runner"
+          exit 1
